@@ -16,9 +16,13 @@
             {% for estudiante in estudiantes  %}
                 {% include 'estudiante/components/card.html' with nombre=estudiante.nombre apellido=estudiante.apellido edad=estudiante.edad email=estudiante.email telefono=estudiante.telefono fecha_registro=estudiante.fecha_registro%}
             {% endfor %}
+        {% elif not estudiantes and request.GET.consulta%}
+            <p class="text-center py-4 m-2 fs-4 text-info text-bg-dark fw-bold rounded-4">
+                No hay Estudiantes registrados con ese nombre o apellido 🫤
+            </p>
         {% else %}
-            <p class="text-center py-5 fs-4 text-danger fw-bold">
-                No hay estudiantes registrados con ese nombre o apellido 🫤
+            <p class="text-center py-4 m-2 fs-4 text-warning text-bg-dark fw-bold rounded-4">
+               Aún no hay Estudiantes registrados  📢
             </p>
         {% endif %}
     </div>
