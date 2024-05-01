@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+{% block tag_title %}Profesor | Panel General {% endblock tag_title %}
+{% block titulo %}Panel de Profesores{% endblock titulo %}
+
+{% block contenido %}
+    
+    <div class="my-4 d-flex flex-column gap-4 align-items-center">
+        <a class="btn btn-primary w-50 fs-3 fw-bold " href="{% url 'profesor:create' %}">
+            Registrar Profesor
+        </a>
+        <a class="btn btn-warning w-50 fs-3 fw-bold" href="{% url 'profesor:list' %}">
+            Lista de Profesores
+        </a>
+    </div>
+
+{% endblock contenido %}

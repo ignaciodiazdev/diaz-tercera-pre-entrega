@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+{% block tag_title %}Profesor | Lista{% endblock tag_title %}
+{% block titulo %}Lista de Profesores{% endblock titulo %}
+{% block contenido %}
+    <form action="{% url 'profesor:list' %}" method="get">
+        <label class="fs-5 fw-bold mb-3 text-primary">Búsqueda:</label>
+        <input 
+            type="text"
+            name="consulta"
+            class="form-control mb-3 w-100"
+            placeholder="Busca por nombre o apellido..."
+        >
+    </form>
+    <div class="row gx-4 gx-lg-5">
+        {% if profesores %}
+            {% for profesor in profesores  %}
+                {% include 'profesor/components/card.html' with nombre=profesor.nombre apellido=profesor.apellido especializacion=profesor.especializacion correo=profesor.correo_electronico telefono=profesor.telefono %}
+            {% endfor %}
+        {% elif not profesores and request.GET.consulta%}
+            <p class="text-center py-4 m-2 fs-4 text-info text-bg-dark fw-bold rounded-4">
+                No hay Profesores registrados con ese nombre o apellido 🫤
+            </p>
+        {% else %}
+            <p class="text-center py-4 m-2 fs-4 text-warning text-bg-dark fw-bold rounded-4">
+               Aún no hay Profesores registrados  📢
+            </p>
+        {% endif %}
+    </div>
+{% endblock contenido %}
