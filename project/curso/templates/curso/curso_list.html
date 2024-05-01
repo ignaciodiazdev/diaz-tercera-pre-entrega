@@ -14,11 +14,15 @@
     <div class="row gx-4 gx-lg-5">
         {% if cursos %}
             {% for curso in cursos %}
-                {% include 'estudiante/components/card.html' with nombre=estudiante.nombre apellido=estudiante.apellido edad=estudiante.edad email=estudiante.email telefono=estudiante.telefono fecha_registro=estudiante.fecha_registro%}
+                {% include 'curso/components/card.html' with nombre=curso.nombre descripcion=curso.descripcion fecha_inicio=curso.fecha_inicio%}
             {% endfor %}
+        {% elif not cursos and request.GET.consulta%}
+            <p class="text-center py-4 m-2 fs-4 text-info text-bg-dark fw-bold rounded-4">
+                No hay Cursos registrados con ese nombre 🫤
+            </p>
         {% else %}
-            <p class="text-center py-5 fs-4 text-danger fw-bold">
-                No hay cursos registrados 🫤
+            <p class="text-center py-4 m-2 fs-4 text-warning text-bg-dark fw-bold rounded-4">
+               Aún no hay Cursos registrados  📢
             </p>
         {% endif %}
     </div>
