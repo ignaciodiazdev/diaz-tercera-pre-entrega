@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% block tag_title %}Curso | Lista{% endblock tag_title %}
+{% block titulo %}Lista de Cursos{% endblock titulo %}
+{% block contenido %}
+    <form action="{% url 'curso:list' %}" method="get">
+        <label class="fs-5 fw-bold mb-3 text-primary">Búsqueda:</label>
+        <input 
+            type="text"
+            name="consulta"
+            class="form-control"
+            placeholder="Busca por curso..."
+        >
+    </form>
+    <div class="row gx-4 gx-lg-5">
+        {% if cursos %}
+            {% for curso in cursos %}
+                {% include 'estudiante/components/card.html' with nombre=estudiante.nombre apellido=estudiante.apellido edad=estudiante.edad email=estudiante.email telefono=estudiante.telefono fecha_registro=estudiante.fecha_registro%}
+            {% endfor %}
+        {% else %}
+            <p class="text-center py-5 fs-4 text-danger fw-bold">
+                No hay cursos registrados 🫤
+            </p>
+        {% endif %}
+    </div>
+{% endblock contenido %}
