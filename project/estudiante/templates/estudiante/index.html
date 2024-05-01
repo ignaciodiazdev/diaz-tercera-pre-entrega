@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+{% block tag_title %}Estudiante | Panel General{% endblock tag_title %}
+{% block titulo %}Panel de Estudiantes{% endblock titulo %}
+
+{% block contenido %}
+
+    <div class="my-4 d-flex flex-column gap-4 align-items-center">
+        <a class="btn btn-primary w-50 fs-3 fw-bold " href="{% url 'estudiante:create' %}">
+            Registrar Estudiante
+        </a>
+        <a class="btn btn-warning w-50 fs-3 fw-bold" href="{% url 'estudiante:list' %}">
+            Lista de Estudiantes
+        </a>
+    </div>
+    
+{% endblock contenido %}
