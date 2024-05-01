@@ -4,7 +4,7 @@
 {% block contenido %}
     <form action="" method="post">
         {% csrf_token %}
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+        <div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 20px;">
             {{ form.as_p }}
         </div>
         <div class="d-flex justify-content-center my-4">
