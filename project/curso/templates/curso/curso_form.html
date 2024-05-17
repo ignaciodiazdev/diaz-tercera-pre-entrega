@@ -1,8 +1,23 @@
 {% extends 'core/base.html' %}
-{% block tag_title %}Curso | Registro{% endblock tag_title %}
-{% block titulo %}Formulario para Registrar Curso{% endblock titulo %}
+{% block tag_title %}
+    Curso | 
+    {% if form.instance.pk %}
+        Editar
+    {% else %}
+        Registrar
+    {% endif %}
+{% endblock tag_title %}
+{% block titulo %}
+    Formulario para 
+    {% if form.instance.pk %}
+        Editar
+    {% else %}
+        Registrar
+    {% endif %}
+    Curso
+{% endblock titulo %}
 {% block contenido %}
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 20px;">
             {{ form.as_p }}

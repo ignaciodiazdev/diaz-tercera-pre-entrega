@@ -1,9 +1,19 @@
-<div class="col-md-4 mb-5 my-4">
-    <div class="card  h-100 text-bg-light">
-        <div class="card-header "><h3>{{ nombre }}</h3></div>
-        <div class="card-body">
-            <p class="card-text"><span class="fw-bold">Descripción:</span> {{ descripcion }}</p>
-            <p class="card-text"><span class="fw-bold">Fecha de Inicio: </span>{{ fecha_inicio }}</p>
+    <div class="card h-100 text-bg-light">
+        <div class="row">
+            <div class="col-md-4">
+                {% if imagen %}
+                    <img src="{{ imagen.url }}" alt="{{ objeto.nombre }}" class="w-100 p-3">
+                {% else %}
+                    <img src="https://salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png" alt="{{ objeto.nombre }}" class="w-100 p-3">
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h3>{{ nombre }}</h3>
+                    <hr/>
+                    <p class="card-text"><span class="fw-bold">Descripción:</span> {{ descripcion }}</p>
+                    <p class="card-text"><span class="fw-bold">Fecha de Inicio: </span>{{ fecha_inicio|date:"d/m/Y" }}</p>
+                </div>
+            </div>
         </div>
     </div>
-</div>

@@ -12,11 +12,16 @@
         >
     </form>
     <div class="row gx-4 gx-lg-5">
-        {% if cursos %}
-            {% for curso in cursos %}
-                {% include 'curso/components/card.html' with nombre=curso.nombre descripcion=curso.descripcion fecha_inicio=curso.fecha_inicio%}
+        {% if object_list %}
+            {% for curso in object_list %}
+                <p>
+                    {{curso.nombre}}
+                    <span><a href="{% url 'curso:detail' curso.id %}">Ver Detalle</a></span>
+                    <span><a href="{% url 'curso:update' curso.id %}">Editar</a></span>
+                    <span><a href="{% url 'curso:delete' curso.id %}">Eliminar</a></span>
+                </p>
             {% endfor %}
-        {% elif not cursos and request.GET.consulta%}
+        {% elif not object_list and request.GET.consulta%}
             <p class="text-center py-4 m-2 fs-4 text-info text-bg-dark fw-bold rounded-4">
                 No hay Cursos registrados con ese nombre 🫤
             </p>
