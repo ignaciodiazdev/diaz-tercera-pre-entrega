@@ -1,30 +1,45 @@
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView
 from . import models, forms
 # Create your views here.
 
 
-def home(request):
+def home(request):  # HOME
     return render(request, 'curso/index.html')
 
 
-def curso_list(request):
-    consulta = request.GET.get("consulta", None)
-    if consulta:
-        print(consulta)
-        query = models.Curso.objects.filter(nombre__icontains=consulta)
-    else:
-        query = models.Curso.objects.all()
+class CursoList(ListView):
+    model = models.Curso
 
-    context = {"cursos": query}
-    return render(request, "curso/curso_list.html", context)
+    def get_queryset(self) -> QuerySet:
+        if self.request.GET.get("consulta"):
+            consulta = self.request.GET.get("consulta")
+            object_list = models.Curso.objects.filter(
+                nombre__icontains=consulta)
+        else:
+            object_list = models.Curso.objects.all()
+
+        return object_list
 
 
-def curso_create(request):
-    if request.method == "POST":
-        form = forms.CursoForm(request.POST)
-        if form.is_valid:
-            form.save()
-            return redirect("curso:home")
-    else:
-        form = forms.CursoForm()
-    return render(request, "curso/curso_create.html", context={"form": form})
+class CursoDetail(DetailView):
+    model = models.Curso
+
+
+class CursoCreate(CreateView):
+    model = models.Curso
+    form_class = forms.CursoForm
+    success_url = reverse_lazy('curso:home')
+
+
+class CursoUpdate(UpdateView):
+    model = models.Curso
+    form_class = forms.CursoForm
+    success_url = reverse_lazy('curso:list')
+
+
+class CursoDelete(DeleteView):
+    model = models.Curso
+    success_url = reverse_lazy('curso:list')
