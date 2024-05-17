@@ -4,13 +4,21 @@
 
 {% block contenido %}
 
-    <div class="my-4 d-flex flex-column gap-4 align-items-center">
-        <a class="btn btn-primary w-50 fs-3 fw-bold " href="{% url 'curso:create' %}">
-            Registrar Curso
-        </a>
-        <a class="btn btn-warning w-50 fs-3 fw-bold" href="{% url 'curso:list' %}">
-            Lista de Cursos
-        </a>
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <a class="btn btn-primary btn-lg d-flex align-items-center fs-2 p-4 fw-bold " href="{% url 'curso:create' %}">
+                <img src="https://cdn-icons-png.flaticon.com/512/3534/3534139.png" alt="Imagen 1" class="me-2" style="max-height: 180px;">
+                Registrar Curso
+            </a>
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-warning btn-lg d-flex align-items-center fs-2 p-4 fw-bold " href="{% url 'curso:list' %}">
+                <img src="https://cdn-icons-png.flaticon.com/512/762/762677.png" alt="Imagen 2" class="me-2" style="max-height: 180px;">
+                Lista de Cursos
+            </a>
+        </div>
     </div>
+</div>
     
 {% endblock contenido %}

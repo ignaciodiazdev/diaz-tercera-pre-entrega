@@ -2,28 +2,53 @@
 {% block tag_title %}Curso | Lista{% endblock tag_title %}
 {% block titulo %}Lista de Cursos{% endblock titulo %}
 {% block contenido %}
-    <form action="{% url 'curso:list' %}" method="get">
-        <label class="fs-5 fw-bold mb-3 text-primary">Búsqueda:</label>
-        <input 
-            type="text"
-            name="consulta"
-            class="form-control"
-            placeholder="Busca por curso..."
-        >
-    </form>
-    <div class="row gx-4 gx-lg-5">
-        {% if cursos %}
-            {% for curso in cursos %}
-                {% include 'curso/components/card.html' with nombre=curso.nombre descripcion=curso.descripcion fecha_inicio=curso.fecha_inicio%}
-            {% endfor %}
-        {% elif not cursos and request.GET.consulta%}
-            <p class="text-center py-4 m-2 fs-4 text-info text-bg-dark fw-bold rounded-4">
-                No hay Cursos registrados con ese nombre 🫤
-            </p>
-        {% else %}
-            <p class="text-center py-4 m-2 fs-4 text-warning text-bg-dark fw-bold rounded-4">
-               Aún no hay Cursos registrados  📢
-            </p>
-        {% endif %}
+
+    <div class="container">
+        <div class="row">
+            <form action="{% url 'curso:list' %}" method="get">
+                <label class="fs-5 fw-bold mb-3 text-primary">Búsqueda:</label>
+                <input 
+                    type="text"
+                    name="consulta"
+                    class="form-control"
+                    placeholder="Busca por curso..."
+                >
+            </form>
+        </div>
+        <div class="row my-4">
+            <div class="col">
+                {% if object_list %}
+                    <table class="table table-striped table-hover"  style="background: #1d1d2b; border-color: #ffffff2f;">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Nombre del Curso</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for object in object_list %}
+                                <tr>
+                                    <td style="color: #de9e44" class="fw-bold">{{ object.nombre }}</td>
+                                    <td>
+                                        <a href="{% url 'curso:detail' object.id %}" class="btn btn-primary btn-sm me-2">Ver Detalle</a>
+                                        <a href="{% url 'curso:update' object.id %}" class="btn btn-warning btn-sm me-2">Editar</a>
+                                        <a href="{% url 'curso:delete' object.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% elif not object_list and request.GET.consulta %}
+                    <p class="text-center py-4 m-2 fs-4 text-info text-bg-dark fw-bold rounded-4">
+                        No hay Cursos registrados con ese nombre 🫤
+                    </p>
+                {% else %}
+                    <p class="text-center py-4 m-2 fs-4 text-warning text-bg-dark fw-bold rounded-4">
+                       Aún no hay Cursos registrados 📢
+                    </p>
+                {% endif %}
+            </div>
+        </div>
     </div>
+    
 {% endblock contenido %}
