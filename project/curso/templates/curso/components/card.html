@@ -1,11 +1,15 @@
-    <div class="card h-100 text-bg-light">
+    <div class="card h-100 mt-4" style="background: #1F2034!important; color: #cecccc !important">
         <div class="row">
             <div class="col-md-4">
-                {% if imagen %}
-                    <img src="{{ imagen.url }}" alt="{{ objeto.nombre }}" class="w-100 p-3">
-                {% else %}
-                    <img src="https://salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png" alt="{{ objeto.nombre }}" class="w-100 p-3">
-                {% endif %}
+                <img 
+                    {% if imagen %}
+                        src="{{ imagen.url }}"
+                    {% else %}
+                        src="https://salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png"
+                    {% endif %}    
+                    alt="Imagen de {{ nombre }}"
+                    class="w-100 p-3"
+                >
             </div>
             <div class="col-md-8">
                 <div class="card-body">

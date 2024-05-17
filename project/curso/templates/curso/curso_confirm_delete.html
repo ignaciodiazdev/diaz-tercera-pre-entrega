@@ -4,9 +4,12 @@
 {% block contenido %}
     <form action="" method="post">
         {% csrf_token %}
-        <h2>¿Esta seguro que desea eliminar el curso {{object.nombre}}?</h2>
-        <div class="d-flex justify-content-center my-4">
+        <h2 class="text-center my-5">¿Está seguro que desea eliminar el curso 
+            <span class="text-warning">{{object.nombre}} </span>?
+        </h2>
+        <div class="d-flex justify-content-center my-4 gap-5">
             <button type="submit" class="btn btn-danger w-25 fs-5 fw-bold">Eliminar</button>
+            <a href="{% url 'curso:list' %}" class="btn btn-primary w-25 fs-5 fw-bold ">Volver</a>
         </div>
     </form>
 {% endblock contenido %}

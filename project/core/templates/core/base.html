@@ -12,13 +12,25 @@
         </title>
         <link rel="icon" type="image/x-icon" href="{% static 'core/assets/favicon.ico' %}" />
         <link href="{% static 'core/css/styles.css' %}" rel="stylesheet" />
+        <style>
+            input{
+                background: #c9c9c900 !important;
+                color: #b7b7b7 !important;
+                border-color: #9090904c !important;
+            }
+            textarea{
+                background: #c9c9c900 !important;
+                color: #b7b7b7 !important;
+                border-color: #9090904c !important;
+            }
+        </style>
     </head>
-    <body>
+    <body style="background-color: #0e0b1b; color: #fff">
         <!-- Responsive navbar-->
         {% include 'core/components/navbar.html' %}
         <!-- Page Content-->
         <div class="container px-4 px-lg-5 my-5">
-            <h1 class="text-center py-4 fw-bold ">
+            <h1 class="text-center py-1 fw-bold ">
                 {% block titulo %} {% endblock titulo %}
             </h1>
             
