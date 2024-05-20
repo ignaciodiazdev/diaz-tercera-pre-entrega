@@ -10,6 +10,7 @@ class Estudiante(models.Model):
     email = models.EmailField()
     telefono = models.CharField(max_length=10)
     fecha_registro = models.DateTimeField(auto_now_add=True)
+    imagen = models.ImageField(upload_to='estudiantes', null=True, blank=True)
 
     def __str__(self):
         return self.nombre + ' ' + self.apellido
