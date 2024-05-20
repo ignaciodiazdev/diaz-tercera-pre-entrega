@@ -1,34 +1,46 @@
-from django.shortcuts import render, redirect
+from django.db.models.query import QuerySet
+from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.db.models import Q
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView
 from . import models, forms
 # Create your views here.
 
 
-def home(request):
+def home(request):  # HOME
     return render(request, 'profesor/index.html')
 
 
-def profesor_list(request):
-    consulta = request.GET.get('consulta', None)
-    if consulta:
-        print(consulta)
-        query = models.Profesor.objects.filter(
-            Q(nombre__icontains=consulta) | Q(apellido__icontains=consulta))
-    else:
-        query = models.Profesor.objects.all()
+class ProfesorList(ListView):
+    model = models.Profesor
 
-    context = {'profesores': query}
-    return render(request, 'profesor/profesor_list.html', context)
+    def get_queryset(self) -> QuerySet:
+        if self.request.GET.get("consulta"):
+            consulta = self.request.GET.get("consulta")
+            object_list = models.Profesor.objects.filter(
+                Q(nombre__icontains=consulta) | Q(apellido__icontains=consulta))
+        else:
+            object_list = models.Profesor.objects.all()
+
+        return object_list
 
 
-def profesor_create(request):
-    if request.method == 'POST':
-        form = forms.ProfesorForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("profesor:home")
-    else:
-        form = forms.ProfesorForm()
+class ProfesorDetail(DetailView):
+    model = models.Profesor
 
-    context = {'form': form}
-    return render(request, 'profesor/profesor_create.html', context)
+
+class ProfesorCreate(CreateView):
+    model = models.Profesor
+    form_class = forms.ProfesorForm
+    success_url = reverse_lazy('profesor:home')
+
+
+class ProfesorUpdate(UpdateView):
+    model = models.Profesor
+    form_class = forms.ProfesorForm
+    success_url = reverse_lazy('profesor:list')
+
+
+class ProfesorDelete(DeleteView):
+    model = models.Profesor
+    success_url = reverse_lazy('profesor:list')
