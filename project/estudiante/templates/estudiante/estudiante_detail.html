@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+{% block tag_title %}Estudiante | Detalle{% endblock tag_title %}
+{% block titulo %}Detalle de Estudiante{% endblock titulo %}
+{% block contenido %}
+    <div class="">
+        {% include 'estudiante/components/card.html' with nombre=object.nombre apellido=object.apellido edad=object.edad email=object.email telefono=object.telefono fecha_registro=object.fecha_registro imagen=object.imagen%}
+    </div> 
+    <div class="d-flex justify-content-center mt-5">
+        <a href="{% url 'estudiante:list' %}" class="btn btn-primary w-25 fs-5 p-2 fw-bold">Volver</a>
+    </div>
+
+{% endblock contenido %}
