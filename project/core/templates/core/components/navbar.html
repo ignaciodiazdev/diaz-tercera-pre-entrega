@@ -9,18 +9,21 @@
                 <li class="nav-item">
                     <a class="nav-link {% if  request.path == "/"%}active{% endif %}" aria-current="page" href="{% url 'core:home' %}">Inicio</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if  request.path == "/about/"%}active{% endif %}" aria-current="page" href="{% url 'core:about' %}">Sobre Mí</a>
+                </li>
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'estudiante:home' %}">Estudiante</a>
+                        <a class="nav-link {% if  request.path == '/estudiante/'%}active{% endif %}" href="{% url 'estudiante:home' %}">Estudiante</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'curso:home' %}">Curso</a>
+                        <a class="nav-link {% if  request.path == '/curso/'%}active{% endif %}" href="{% url 'curso:home' %}">Curso</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'profesor:home' %}">Profesor</a>
+                        <a class="nav-link {% if  request.path == '/profesor/'%}active{% endif %}" href="{% url 'profesor:home' %}">Profesor</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-bg-info rounded-1 ">{{ user.username }}</a>
+                        <a class="nav-link text-bg-info rounded-1">{{ user.username }}</a>
                     </li>
                     <li class="nav-item">
                         <form action="{% url 'core:logout' %}" method="post">
