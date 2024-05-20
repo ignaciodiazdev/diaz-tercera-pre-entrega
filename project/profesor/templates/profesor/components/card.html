@@ -1,10 +1,24 @@
-<div class="col-md-4 mb-5 my-4">
-    <div class="card  h-100 text-bg-light">
-        <div class="card-header "><h3>{{ nombre }} {{ apellido }}</h3></div>
-        <div class="card-body">
-            <p class="card-text">Especialización: {{ especializacion }}</p>
-            <p class="card-text">Correo: {{ correo }}</p>
-            <p class="card-text">Telefono: {{ telefono }}</p>
+    <div class="card h-100 mt-4" style="background: #1F2034!important; color: #cecccc !important">
+        <div class="row">
+            <div class="col-md-4">
+                <img 
+                    {% if imagen %}
+                        src="{{ imagen.url }}"
+                    {% else %}
+                        src="https://salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png"
+                    {% endif %}    
+                    alt="Imagen de Usuario {{ nombre }}"
+                    class="w-100 p-3"
+                >
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h3>{{ nombre }}, {{ apellido }}</h3>
+                    <hr/>
+                    <p class="card-text"><span class="fw-bold">Especialización:</span> {{ especializacion }}</p>
+                    <p class="card-text"><span class="fw-bold">Correo: </span>{{ correo }}</p>
+                    <p class="card-text"><span class="fw-bold">Telefono: </span>{{ telefono }}</p>
+                </div>
+            </div>
         </div>
     </div>
-</div>
