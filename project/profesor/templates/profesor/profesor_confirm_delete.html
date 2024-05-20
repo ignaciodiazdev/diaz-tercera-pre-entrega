@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% block tag_title %}Profesor | Eliminar{% endblock tag_title %}
+{% block titulo %}Eliminar Profesor{% endblock titulo %}
+{% block contenido %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <h2 class="text-center my-5">¿Está seguro que desea eliminar el Profesor 
+            <span class="text-warning">{{object.nombre}} </span>?
+        </h2>
+        <div class="d-flex justify-content-center my-4 gap-5">
+            <button type="submit" class="btn btn-danger w-25 fs-5 fw-bold">Eliminar</button>
+            <a href="{% url 'profesor:list' %}" class="btn btn-primary w-25 fs-5 fw-bold ">Volver</a>
+        </div>
+    </form>
+{% endblock contenido %}
