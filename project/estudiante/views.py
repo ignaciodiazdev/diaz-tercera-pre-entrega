@@ -1,32 +1,46 @@
-from django.shortcuts import render, redirect
+from django.db.models.query import QuerySet
+from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.db.models import Q
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView
 from . import models, forms
 # Create your views here.
 
 
-def home(request):
-    return render(request, "estudiante/index.html")
+def home(request):  # HOME
+    return render(request, 'estudiante/index.html')
 
 
-def estudiante_list(request):
-    consulta = request.GET.get("consulta", None)
-    if consulta:
-        print(consulta)
-        query = models.Estudiante.objects.filter(
-            Q(nombre__icontains=consulta) | Q(apellido__icontains=consulta))
-    else:
-        query = models.Estudiante.objects.all()
+class EstudianteList(ListView):
+    model = models.Estudiante
 
-    context = {"estudiantes": query}
-    return render(request, "estudiante/estudiante_list.html", context)
+    def get_queryset(self) -> QuerySet:
+        if self.request.GET.get("consulta"):
+            consulta = self.request.GET.get("consulta")
+            object_list = models.Estudiante.objects.filter(
+                Q(nombre__icontains=consulta) | Q(apellido__icontains=consulta))
+        else:
+            object_list = models.Estudiante.objects.all()
+
+        return object_list
 
 
-def estudiante_create(request):
-    if request.method == "POST":
-        form = forms.EstudianteForm(request.POST)
-        if form.is_valid:
-            form.save()
-            return redirect("estudiante:home")
-    else:
-        form = forms.EstudianteForm()
-    return render(request, "estudiante/estudiante_create.html", context={"form": form})
+class EstudianteDetail(DetailView):
+    model = models.Estudiante
+
+
+class EstudianteCreate(CreateView):
+    model = models.Estudiante
+    form_class = forms.EstudianteForm
+    success_url = reverse_lazy('estudiante:home')
+
+
+class EstudianteUpdate(UpdateView):
+    model = models.Estudiante
+    form_class = forms.EstudianteForm
+    success_url = reverse_lazy('estudiante:list')
+
+
+class EstudianteDelete(DeleteView):
+    model = models.Estudiante
+    success_url = reverse_lazy('estudiante:list')
