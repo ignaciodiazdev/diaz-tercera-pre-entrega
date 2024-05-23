@@ -5,18 +5,21 @@
 {% block contenido %}
 
 <div class="container my-4">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <a class="btn btn-primary btn-lg d-flex align-items-center fs-2 p-4 fw-bold " href="{% url 'curso:create' %}">
-                <img src="https://cdn-icons-png.flaticon.com/512/3534/3534139.png" alt="Imagen 1" class="me-2" style="max-height: 180px;">
-                Registrar Curso
-            </a>
+    <div class="row">
+        <div class="col-md-6 rounded-4 text-center" style="background: #1F2034; border: 1px solid #97e97c8b; box-shadow: 1px 4px 13px -3px rgba(113,241,163,0.62);">
+            <img src="https://cdn-icons-png.flaticon.com/512/2972/2972272.png" alt="Imagen 1" class="img-fluid" style="height: 400px;">
         </div>
         <div class="col-md-6">
-            <a class="btn btn-warning btn-lg d-flex align-items-center fs-2 p-4 fw-bold " href="{% url 'curso:list' %}">
-                <img src="https://cdn-icons-png.flaticon.com/512/762/762677.png" alt="Imagen 2" class="me-2" style="max-height: 180px;">
-                Lista de Cursos
-            </a>
+            <div class="d-flex flex-column gap-5 justify-content-center align-items-center  h-100">
+                <a class="btn btn-primary btn-lg d-flex align-items-center fs-2 p-4 fw-bold" style="width: 510px;" href="{% url 'curso:create' %}">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3534/3534139.png" alt="Imagen 1" class="me-2" style="max-height: 100px;">
+                    <span class="mx-4">Registrar Curso</span>
+                </a>
+                <a class="btn btn-warning btn-lg d-flex align-items-center fs-2 p-4 fw-bold" style="width: 510px;" href="{% url 'curso:list' %}">
+                    <img src="https://cdn-icons-png.flaticon.com/512/762/762677.png" alt="Imagen 2" class="me-2" style="max-height: 100px;">
+                    <span class="mx-4">Lista de Cursos</span>
+                </a>
+            </div>
         </div>
     </div>
 </div>
