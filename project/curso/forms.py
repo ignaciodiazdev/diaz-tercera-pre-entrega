@@ -8,6 +8,6 @@ class CursoForm(forms.ModelForm):
         fields = "__all__"
         widgets = {
             "nombre": forms.TextInput(attrs={"class": "form-control"}),
-            "descripcion": forms.Textarea(attrs={"class": "form-control", "style": "height: 100px; resize: none;"}),
+            "descripcion": forms.Textarea(attrs={"class": "form-control", "style": "height: 60px; resize: none;"}),
             "fecha_inicio": forms.DateInput(attrs={"class": "form-control", "type": "date"}),
         }
