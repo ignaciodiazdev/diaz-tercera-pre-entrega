@@ -8,5 +8,30 @@
     <div class="d-flex justify-content-center mt-5">
         <a href="{% url 'curso:list' %}" class="btn btn-primary w-25 fs-5 p-2 fw-bold">Volver</a>
     </div>
+    <h2 class="mt-5">Estudiantes Inscritos</h2>
+    <hr/>
+    {% if object.estudiantes.all %}
+        <section class="mt-5" style="display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem">
+            {% for estudiante in object.estudiantes.all %}
+                <article class="p-2 rounded-2 d-flex align-items-center" style="background:#1F2034!important; height: 100px;">                
+                    <img 
+                        {% if estudiante.imagen %}
+                            src="{{ estudiante.imagen.url }}"
+                        {% else %}
+                            src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                        {% endif %}    
+                        alt="Imagen de Usuario {{ nombre }}"
+                        class="p-3 rounded-circle"
+                        style="height: 100%;"
+                    >
+                    <div class="">
+                        <span>{{ estudiante.nombre }} {{ estudiante.apellido }}</span>
+                    </div>
+                </article>
+            {% endfor %}
+        </section>
+    {% else %}
+        <p class="fs-5 text-secondary">No hay estudiantes inscritos en este curso</p>
+    {% endif %}
 
 {% endblock contenido %}
