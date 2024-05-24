@@ -8,6 +8,8 @@ class Curso(models.Model):
     descripcion = models.TextField()
     fecha_inicio = models.DateField()
     imagen = models.ImageField(upload_to='cursos/', null=True, blank=True)
+    estudiantes = models.ManyToManyField(
+        'estudiante.Estudiante', related_name='cursos')
 
     def __str__(self):
         return self.nombre
