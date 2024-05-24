@@ -6,17 +6,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block tag_title %}
-        Sistema Web | Academia Virtual
+        Sistema Web | Academia
     {% endblock tag_title %}
 </head>
 <body>
     {% block titulo %}
-        Sistema Web de Academia Virtual
+        Sistema Web de Academia
     {% endblock titulo %}
     {% block contenido %}
         {% if user.is_authenticated %}
             {{mensaje}}    
-            <p class="fs-2 mt-3">Bienvenido, {{user.username}} 🖖😊</p>
+            <p class="fs-2 mt-3">Bienvenido, {{user.first_name}} 🖖😊</p>
         {% endif %}
         <!-- Heading Row-->
         <div class="row gx-4 gx-lg-5 align-items-center my-3">
