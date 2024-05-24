@@ -2,9 +2,13 @@
 
 Esta aplicación permite al usuario poder registrar estudiantes, profesores y cursos 😎
 
+## 📽️ Video de Funcionalidad del Sistema Web
+
+Dale Click en el siguiente enlace para ver la presentación del sistema web -> https://youtu.be/YomPoQFtJJ4
+
 ## 📝 Funcionalidad del sistema web
 
-El sistema web permite a los usuarios realizar el registro de estudiantes, profesores y cursos. Además, dentro del listado de cada módulo, se puede hacer una búsqueda de un registro en específico:
+El sistema web esta orientado a ser una plataforma de academia, este permite a los usuarios realizar el registro de estudiantes, profesores y cursos. Además, dentro del listado de cada módulo, se puede hacer una búsqueda de un registro en específico:
 
 ### 🏠 Vista de Inicio
 
