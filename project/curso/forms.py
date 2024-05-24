@@ -11,4 +11,5 @@ class CursoForm(forms.ModelForm):
             "descripcion": forms.Textarea(attrs={"class": "form-control", "style": "height: 60px; resize: none;"}),
             "fecha_inicio": forms.DateInput(attrs={"class": "form-control", "type": "date"}),
             "estudiantes": forms.SelectMultiple(attrs={"class": "form-control"}),
+            "profesor": forms.Select(attrs={"class": "form-control bg-dark"}),
         }
